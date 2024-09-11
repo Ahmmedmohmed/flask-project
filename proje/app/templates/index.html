@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="my-4 text-center">Library Books</h1>
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{ book.image_url }}" alt="{{ book.title }} cover photo">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.description[:100] }}...</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ book.show_url }}" class="btn btn-primary">Show Details</a>
+                    <form action="{{ book.delete_url }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
